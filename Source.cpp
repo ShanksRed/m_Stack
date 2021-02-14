@@ -9,7 +9,10 @@ Stack<int>::type_t& enter_number(int condition);
 int main()
 {
     setlocale(LC_ALL, "Russian");
-    Stack<int> m_stck{};
+    Stack<int> m_stck{1,2,3};
+    Stack<int>::Iterator iterator;
+    iterator = m_stck.Begin();
+
     m_stck.print_stack();
 
     int menu{-1};
@@ -139,8 +142,8 @@ inline void Stack<T>::print_stack() const noexcept
         std::cout << std::endl;
     */
     
-    Stack<T>::Iterator iterator = this->Begin();
-    std::cout << "im here";
+    //Stack<T>::Iterator iterator = this->Begin();
+
 
 
 }

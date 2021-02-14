@@ -34,7 +34,8 @@ private:
 	};
 	std::unique_ptr<pointNode> head;
 public:
-	
+	class Iterator;
+
 	class Iterator {
 		using Iterator_type = Stack<T>::pointNode;
 	public:
@@ -44,10 +45,11 @@ public:
 			current_node = rNode;
 		}
 
-		Iterator_type* operator=(Iterator_type* rNode) {
+		Iterator& operator=(Iterator_type* rNode) {
 			this->current_node = rNode;
+			return *this;
 		}
-		int a;
+
 
 
 	private:
