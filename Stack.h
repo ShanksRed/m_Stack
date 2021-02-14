@@ -38,6 +38,8 @@ public:
 	class Iterator {
 		using Iterator_type = Stack<T>::pointNode;
 	public:
+		Iterator() = default;
+
 		Iterator(Iterator_type* rNode) {
 			current_node = rNode;
 		}
