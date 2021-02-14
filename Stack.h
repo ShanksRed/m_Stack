@@ -34,7 +34,6 @@ private:
 	};
 	std::unique_ptr<pointNode> head;
 public:
-	class Iterator;
 
 	class Iterator {
 		using Iterator_type = Stack<T>::pointNode;
@@ -49,8 +48,16 @@ public:
 			this->current_node = rNode;
 			return *this;
 		}
-
-
+		void operator++() {
+			if(this->current_node)
+			this->current_node = this->current_node->next.get();		
+		}
+		bool operator !=(const Iterator& pNode) {
+			return this->current_node!= pNode.current_node;	
+		}
+		T& const get_value() {
+			return this->current_node->data;
+		}
 
 	private:
 
@@ -74,9 +81,9 @@ public:
 	const T& top() const  noexcept;
 	bool is_empty() const  noexcept;
 	inline void print_stack() const noexcept;
-	inline typename pointNode* Begin() noexcept;
-	inline typename pointNode* Next(pointNode*)noexcept;
-	inline typename Stack<T>::pointNode* End()noexcept;
+	inline Iterator Begin() const noexcept;
+	inline Iterator Next(pointNode*)noexcept;
+	inline Iterator End()const noexcept;
 	T& findValue(T);
 	void clear() noexcept;
 	void fill_rnumb(int,int,int);
@@ -133,28 +140,35 @@ bool Stack<T>::is_empty() const noexcept {
 }
 
 
+/*
+template<typename T>
+inline Stack<T>::Iterator Stack<T>::Begin() noexcept
+{
+	//auto temp = this->head.get();
+	return Iterator(head->get());
+}
+*/
+
 
 template<typename T>
-inline typename Stack<T>::pointNode* Stack<T>::Begin() noexcept
+inline typename Stack<T>::Iterator Stack<T>::Begin() const noexcept
 {
-	pointNode* head = this->head.get();
-	return head;
+	auto temp = this->head.get();
+	return Iterator(temp);
 }
 
 template<typename T>
-inline typename Stack<T>::pointNode* Stack<T>::Next(pointNode* current) noexcept
+inline typename Stack<T>::Iterator Stack<T>::Next(pointNode* current) noexcept
 {
-	if (current) {
-		current= current->next.get();
-	}
-
-	else return nullptr;
+	if(current)
+		Iterator(current->next.get());
+	else return Iterator(nullptr);
 }
 
 template<typename T>
-inline typename Stack<T>::pointNode* Stack<T>::End() noexcept
+inline typename Stack<T>::Iterator Stack<T>::End() const noexcept
 {
-	return nullptr;
+	return Iterator(nullptr);
 }
 
 template<typename T>

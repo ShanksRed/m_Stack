@@ -10,9 +10,6 @@ int main()
 {
     setlocale(LC_ALL, "Russian");
     Stack<int> m_stck{1,2,3};
-    Stack<int>::Iterator iterator;
-    iterator = m_stck.Begin();
-
     m_stck.print_stack();
 
     int menu{-1};
@@ -51,6 +48,7 @@ int main()
         {
             auto temp = m_stck.top();
             if (!temp) std::cout << "Стек пуст" << std::endl;
+            else std::cout <<"Верхний элемент стека - "<< temp<<std::endl;
         }
         break;
         case 3:
@@ -130,23 +128,15 @@ int main()
 template<typename T>
 inline void Stack<T>::print_stack() const noexcept
 {
-    /*
-    pointNode* head = this->head.get();
-    if (!head) std::cout << "стек пуст";
-    else
-        while (head) {
-            std::cout << head->data << " ";
-            head = head->next.get();
-
+    if (this->is_empty() == true) std::cout << "Стек пуст " << std::endl;
+    else {
+        for (Stack<int>::Iterator iterator = this->Begin(); iterator != this->End(); ++iterator) {
+            std::cout << iterator.get_value() << " ";
         }
         std::cout << std::endl;
-    */
-    
-    //Stack<T>::Iterator iterator = this->Begin();
-
-
-
+    }
 }
+
 
 Stack<int>::type_t& enter_number (int condition) {
     condition==4? std::cout << "Введите элемент для нахождения:": std::cout << "Введите число:";
