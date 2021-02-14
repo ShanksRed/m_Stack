@@ -42,9 +42,9 @@ public:
 			current_node = rNode;
 		}
 
-		//Iterator_type* operator=(Iterator_type* rNode) {
-		//	this->current_node = rNode;
-		//}
+		Iterator_type* operator=(Iterator_type* rNode) {
+			this->current_node = rNode;
+		}
 
 
 	private:
