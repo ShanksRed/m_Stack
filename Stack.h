@@ -47,6 +47,7 @@ public:
 		Iterator_type* operator=(Iterator_type* rNode) {
 			this->current_node = rNode;
 		}
+		int a;
 
 
 	private:
