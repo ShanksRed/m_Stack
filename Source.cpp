@@ -140,7 +140,7 @@ inline void Stack<T>::print_stack() const noexcept
     */
     
     Stack<T>::Iterator iterator = this->Begin();
-
+    std::cout << "im here";
 
 
 }
